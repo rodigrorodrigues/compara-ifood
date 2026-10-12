@@ -1,0 +1,19 @@
+# sessão do navegador (cookies, login) — nunca versionar
+profile/
+
+# dados de depuração e estado local
+debug/
+.codegraph/
+.omo/
+
+# dependências e ambiente (a extensão não tem build)
+node_modules/
+.venv/
+
+# logs
+*.log
+*.err
+
+# sistema
+Thumbs.db
+.DS_Store

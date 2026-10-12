@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Compara iFood</title>
+    <style>
+      :root {
+        --accent: #ea1d2c;
+        --accent-bright: #ff3242;
+        --bg: #0b0b0d;
+        --ink: #f5f5f6;
+        --muted: #9b9ba3;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: var(--bg); color: var(--ink);
+        font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+
+      .clip { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .scene { opacity: 0; animation: sceneFade var(--d) linear both; }
+      @keyframes sceneFade {
+        0% { opacity: 0; }
+        6% { opacity: 1; }
+        92% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+
+      .up { opacity: 0; animation: fadeUp 0.72s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .kb { animation: kenburns 7s ease-out both; }
+      @keyframes kenburns {
+        from { transform: scale(1.07); }
+        to { transform: scale(1); }
+      }
+
+      .red { color: var(--accent); }
+
+      /* ---------- H00K ---------- */
+      #hook { background: radial-gradient(120% 130% at 72% 18%, #1b1c22 0%, #0b0b0d 62%); }
+      #hook .bg {
+        position: absolute; right: -40px; top: 50%;
+        height: 1320px; transform-origin: center;
+        transform: translateY(-50%);
+        opacity: 0.24;
+      }
+      #hook .bg img { display: block; height: 1320px; width: auto; animation: kenburns 7s ease-out both; }
+      #hook .veil {
+        position: absolute; inset: 0;
+        background: linear-gradient(90deg, #0b0b0d 18%, rgba(11, 11, 13, 0.82) 52%, rgba(11, 11, 13, 0.15) 100%);
+      }
+      #hook .copy { position: absolute; left: 150px; top: 50%; transform: translateY(-50%); }
+      .huge { font-size: 138px; font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
+      .huge + .huge { margin-top: 10px; }
+
+      /* ---------- PAIN ---------- */
+      #pain { background: var(--bg); display: grid; place-items: center; }
+      #pain .stack { text-align: center; padding: 0 140px; }
+      #pain .line { font-size: 104px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; }
+      #pain .sub { margin-top: 34px; font-size: 40px; font-weight: 500; color: var(--muted); }
+
+      /* ---------- FLOW ---------- */
+      .flow { display: flex; align-items: center; gap: 78px; padding: 0 140px; }
+      .flow.rev { flex-direction: row-reverse; }
+      .txt { flex: 1 1 0; min-width: 0; }
+      .kick {
+        font-size: 25px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+        color: var(--accent-bright); margin-bottom: 24px;
+      }
+      .txt h2 { font-size: 80px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.03; }
+      .txt p { margin-top: 26px; font-size: 33px; line-height: 1.4; color: var(--muted); max-width: 660px; }
+      .frame {
+        flex: none; border-radius: 18px; overflow: hidden; background: #faf7f3;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 50px 140px rgba(0, 0, 0, 0.66), 0 0 0 1px rgba(0, 0, 0, 0.45);
+      }
+      .frame img { display: block; height: 762px; width: auto; animation: kenburns 7s ease-out both; }
+      .frame.short img { height: 520px; }
+
+      /* ---------- HIGHLIGHT ---------- */
+      #star { background: radial-gradient(95% 130% at 50% 110%, rgba(234, 29, 44, 0.22) 0%, #0b0b0d 58%); display: grid; place-items: center; }
+      #star .stack { text-align: center; padding: 0 150px; }
+      #star .kick { text-align: center; }
+      #star .big { font-size: 92px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+      #star .soft { margin-top: 30px; font-size: 54px; font-weight: 700; color: var(--muted); letter-spacing: -0.02em; }
+      #star .tiny { margin-top: 28px; font-size: 32px; font-weight: 500; color: #6f6f78; }
+
+      /* ---------- CTA ---------- */
+      #cta { background: radial-gradient(90% 120% at 50% 42%, #17181d 0%, #0b0b0d 68%); display: grid; place-items: center; }
+      #cta .stack { text-align: center; }
+      #cta .brand { font-size: 150px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+      #cta .pill {
+        display: inline-flex; align-items: center; gap: 14px; margin-top: 40px;
+        padding: 18px 38px; border-radius: 999px;
+        background: var(--accent); color: #fff;
+        font-size: 40px; font-weight: 700; letter-spacing: -0.01em;
+        box-shadow: 0 24px 70px rgba(234, 29, 44, 0.45);
+      }
+      #cta .foot { margin-top: 38px; font-size: 31px; font-weight: 500; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="33"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+      data-no-timeline
+    >
+      <!-- ================= HOOK (0 – 3.2s) ================= -->
+      <section id="hook" class="clip scene" data-start="0" data-duration="3.2" data-track-index="0" style="--d: 3.2s">
+        <div class="bg"><img src="assets/filtro.png" alt="" /></div>
+        <div class="veil"></div>
+        <div class="copy">
+          <div class="huge up" style="animation-delay: 0.15s">27 mercados.</div>
+          <div class="huge up" style="animation-delay: 0.4s">Uma lista.</div>
+          <div class="huge up red" style="animation-delay: 0.7s">Segundos.</div>
+        </div>
+      </section>
+
+      <!-- ================= PAIN (3.2 – 7.5s) ================= -->
+      <section id="pain" class="clip scene" data-start="3.2" data-duration="4.3" data-track-index="1" style="--d: 4.3s">
+        <div class="stack">
+          <div class="line up" style="animation-delay: 0.15s">Comparar tudo na mão</div>
+          <div class="line up" style="animation-delay: 0.4s">é a <span class="red">tarde inteira</span>.</div>
+          <div class="sub up" style="animation-delay: 0.75s">E no fim sempre bate a dúvida: achei mesmo o mais barato?</div>
+        </div>
+      </section>
+
+      <!-- ================= FLOW 1 — COLE A LISTA (7.5 – 10.9s) ================= -->
+      <section class="clip scene flow" id="flow-lista" data-start="7.5" data-duration="3.4" data-track-index="2" style="--d: 3.4s">
+        <div class="txt">
+          <div class="kick up" style="animation-delay: 0.12s">Passo 1</div>
+          <h2 class="up" style="animation-delay: 0.22s">Cole a lista.</h2>
+          <p class="up" style="animation-delay: 0.38s">Um item por linha. Pode escrever do seu jeito, a extensão entende.</p>
+        </div>
+        <div class="frame short up" data-layout-allow-overflow style="animation-delay: 0.2s"><img src="assets/idle.png" alt="" /></div>
+      </section>
+
+      <!-- ================= FLOW 2 — COMPARAÇÃO (10.9 – 14.3s) ================= -->
+      <section class="clip scene flow rev" id="flow-compara" data-start="10.9" data-duration="3.4" data-track-index="3" style="--d: 3.4s">
+        <div class="txt">
+          <div class="kick up" style="animation-delay: 0.12s">Passo 2</div>
+          <h2 class="up" style="animation-delay: 0.22s">Comparação em segundos.</h2>
+          <p class="up" style="animation-delay: 0.38s">27 mercados lado a lado, do mais barato pro mais caro, com o total já somado.</p>
+        </div>
+        <div class="frame up" data-layout-allow-overflow style="animation-delay: 0.2s"><img src="assets/results.png" alt="" /></div>
+      </section>
+
+      <!-- ================= FLOW 3 — TROCA (14.3 – 17.7s) ================= -->
+      <section class="clip scene flow" id="flow-troca" data-start="14.3" data-duration="3.4" data-track-index="4" style="--d: 3.4s">
+        <div class="txt">
+          <div class="kick up" style="animation-delay: 0.12s">Passo 3</div>
+          <h2 class="up" style="animation-delay: 0.22s">Troque o produto que não convenceu.</h2>
+          <p class="up" style="animation-delay: 0.38s">Veja as opções do mercado e escolha a sua, ou deixe a mais barata.</p>
+        </div>
+        <div class="frame up" data-layout-allow-overflow style="animation-delay: 0.2s"><img src="assets/swap.png" alt="" /></div>
+      </section>
+
+      <!-- ================= FLOW 4 — FILTRO (17.7 – 21s) ================= -->
+      <section class="clip scene flow rev" id="flow-filtro" data-start="17.7" data-duration="3.3" data-track-index="5" style="--d: 3.3s">
+        <div class="txt">
+          <div class="kick up" style="animation-delay: 0.12s">Passo 4</div>
+          <h2 class="up" style="animation-delay: 0.22s">Filtre só quem tem tudo.</h2>
+          <p class="up" style="animation-delay: 0.38s">Um clique e some quem não tem a lista inteira. Nada de faltar item.</p>
+        </div>
+        <div class="frame up" data-layout-allow-overflow style="animation-delay: 0.2s"><img src="assets/filtro.png" alt="" /></div>
+      </section>
+
+      <!-- ================= HIGHLIGHT (21 – 27.5s) ================= -->
+      <section id="star" class="clip scene" data-start="21" data-duration="6.5" data-track-index="6" style="--d: 6.5s">
+        <div class="stack">
+          <div class="kick up" style="animation-delay: 0.12s">Escolha automática</div>
+          <div class="big up" style="animation-delay: 0.25s">A IA <span class="red">Jev</span> escolhe<br />o produto certo.</div>
+          <div class="soft up" style="animation-delay: 0.6s">Quantidade e trocas na hora.</div>
+          <div class="tiny up" style="animation-delay: 0.9s">Ou você assume e escolhe na mão, item por item.</div>
+        </div>
+      </section>
+
+      <!-- ================= CTA (27.5 – 33s) ================= -->
+      <section id="cta" class="clip scene" data-start="27.5" data-duration="5.5" data-track-index="7" style="--d: 5.5s">
+        <div class="stack">
+          <div class="brand up" style="animation-delay: 0.2s">Compara <span class="red">iFood</span></div>
+          <div class="up" style="animation-delay: 0.5s">
+            <span class="pill">extensão local pro Chrome</span>
+          </div>
+          <div class="foot up" style="animation-delay: 0.85s">Sem cadastro. Roda no seu navegador.</div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Compara iFood",
+  "version": "0.1.0",
+  "description": "Compare precos entre mercados no iFood, troque produtos e monte o carrinho mais barato.",
+  "content_scripts": [
+    {
+      "matches": ["https://www.ifood.com.br/*"],
+      "js": ["bridge.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.ifood.com.br/*"],
+      "js": ["content.js"],
+      "world": "ISOLATED",
+      "run_at": "document_idle"
+    }
+  ]
+}
