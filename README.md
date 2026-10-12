@@ -6,8 +6,6 @@ Extensão para Google Chrome que compara os preços da sua lista de compras em v
 
 <video src="video/compara-ifood-showcase.mp4" controls width="720" aria-label="Demonstração da extensão Compara iFood"></video>
 
-[Baixar o vídeo da demonstração (MP4)](video/compara-ifood-showcase.mp4)
-
 ## O que ela faz
 
 Você cola sua lista de compras no painel — um item por linha, no seu jeito (`2x leite integral`, `3 latas de cerveja`, `1kg de arroz`) — e a extensão:
@@ -60,12 +58,6 @@ video/        demonstrações (GIF/MP4) e o projeto das animações
 ```
 
 A extensão é JavaScript puro: `content.js` cuida da interface (Shadow DOM, então o layout do iFood não briga com o dela) e `bridge.js` lê os cabeçalhos das chamadas que a própria página faz para reutilizar a sua sessão.
-
-## Vídeo de divulgação
-
-<video src="video/compara-ifood-linkedin.mp4" controls width="720" aria-label="Vídeo de divulgação da extensão Compara iFood"></video>
-
-[Baixar o vídeo de divulgação (MP4)](video/compara-ifood-linkedin.mp4)
 
 ## Aviso
 
